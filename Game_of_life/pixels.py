@@ -182,13 +182,13 @@ def generate_init_positions(width, height):
         (68, 71): ALIVE, (72, 71): ALIVE,
         (68, 73): ALIVE, (72, 73): ALIVE,
         (70, 68): ALIVE, (72, 72): ALIVE,
-        (66, 70): ALIVE, (74, 70): ALIVE,
+        (66, 70): ALIVE, (74, 70): ALIVE
     }
 
-    for x in range(width):
-        for y in range(height):
-            if (x, y) not in positions.keys():
-                positions[(x, y)] = DEAD
+    # for x in range(width):
+    #     for y in range(height):
+    #         if ((x, y)) not in positions.keys():
+    #             positions[(x, y)] = DEAD
 
     # Si se descomenta esta parte y se comenta lo anterior es posible
     # ver posiciones random en vez de un patrón inicial

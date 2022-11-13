@@ -22,9 +22,14 @@ screen = pygame.display.set_mode(
     pygame.OPENGL | pygame.DOUBLEBUF
 )
 
-delayT = 5
+delayT = 0
 
 pixels = generate_init_positions(width, height)
+
+for x in range(width):
+    for y in range(height):
+        if ((x, y)) not in pixels.keys():
+            pixels[(x, y)] = DEAD
 
 running = True
 while running:
@@ -38,47 +43,47 @@ while running:
     for key in pixelsT.keys():
         pixel(key[0], key[1], pixelsT[key])
 
-    # for x in range(width):
-    #     for y in range(height):
+    for x in range(width):
+        for y in range(height):
 
-    #         NumN = 0
-    #         left, right, above, below = get_neighbors_coords(x, y, width, height)
+            NumN = 0
+            left, right, above, below = get_neighbors_coords(x, y, width, height)
 
-    #         # Se busca la cantidad de vecinos vivos
-    #         # Esquina superior izquierda
-    #         if pixelsT[(left, above)] == ALIVE:
-    #             NumN += 1
-    #         # Centro superior
-    #         if pixelsT[(x, above)] == ALIVE:
-    #             NumN += 1
-    #         # Esquina superior derecha
-    #         if pixelsT[(right, above)] == ALIVE:
-    #             NumN += 1
-    #         # Centro izquierdo
-    #         if pixelsT[(left, y)] == ALIVE:
-    #             NumN += 1
-    #         # Centro derecho
-    #         if pixelsT[(right, y)] == ALIVE:
-    #             NumN += 1
-    #         # Esquina inferior izquierda
-    #         if pixelsT[(left, below)] == ALIVE:
-    #             NumN += 1
-    #         # Centro inferior
-    #         if pixelsT[(x, below)] == ALIVE:
-    #             NumN += 1
-    #         # Esquina superior derecha
-    #         if pixelsT[(right, below)] == ALIVE:
-    #             NumN += 1
+            # Se busca la cantidad de vecinos vivos
+            # Esquina superior izquierda
+            if pixelsT[(left, above)] == ALIVE:
+                NumN += 1
+            # Centro superior
+            if pixelsT[(x, above)] == ALIVE:
+                NumN += 1
+            # Esquina superior derecha
+            if pixelsT[(right, above)] == ALIVE:
+                NumN += 1
+            # Centro izquierdo
+            if pixelsT[(left, y)] == ALIVE:
+                NumN += 1
+            # Centro derecho
+            if pixelsT[(right, y)] == ALIVE:
+                NumN += 1
+            # Esquina inferior izquierda
+            if pixelsT[(left, below)] == ALIVE:
+                NumN += 1
+            # Centro inferior
+            if pixelsT[(x, below)] == ALIVE:
+                NumN += 1
+            # Esquina superior derecha
+            if pixelsT[(right, below)] == ALIVE:
+                NumN += 1
 
-    #         # Reglas
-    #         if pixelsT[(x, y)] == ALIVE and (NumN == 2 or NumN == 3):
-    #             pixels[(x, y)] = ALIVE
+            # Reglas
+            if pixelsT[(x, y)] == ALIVE and (NumN == 2 or NumN == 3):
+                pixels[(x, y)] = ALIVE
 
-    #         elif pixelsT[(x, y)] == DEAD and NumN == 3:
-    #             pixels[(x, y)] = ALIVE
+            elif pixelsT[(x, y)] == DEAD and NumN == 3:
+                pixels[(x, y)] = ALIVE
 
-    #         else:
-    #             pixels[(x, y)] = DEAD
+            else:
+                pixels[(x, y)] = DEAD
 
     # Flip
     pygame.display.flip()
